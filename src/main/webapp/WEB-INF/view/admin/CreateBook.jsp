@@ -243,8 +243,8 @@
                                                         <div class="card card-registration my-4">
                                                             <div class="row g-0">
                                                                 <div class="col-xl-6 d-none d-xl-block">
-                                                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
-                                                                        alt="Sample photo" class="img-fluid"
+                                                                    <img src="/images/book/book.webp" alt="Sample photo"
+                                                                        class="img-fluid"
                                                                         style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                                                                 </div>
                                                                 <div class="col-xl-6">

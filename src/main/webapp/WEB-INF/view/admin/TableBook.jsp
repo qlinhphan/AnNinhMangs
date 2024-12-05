@@ -239,16 +239,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-success">Sửa T.T Sách</button>
-                                                    <button type="button" class="btn btn-danger">Xóa Sách</button>
-                                                </td>
-                                            </tr>
+
+                                            <c:forEach var="book" items="${listBook}">
+                                                <tr>
+                                                    <th scope="row">${book.id}</th>
+                                                    <td>${book.name}</td>
+                                                    <td>${book.year}</td>
+                                                    <td>${book.publisher}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-success"><a
+                                                                href="/edit/${book.id}">Sửa T.T
+                                                                Sách</a></button>
+                                                        <button type="button" class="btn btn-danger"><a
+                                                                href="/delBook/${book.id}">Xóa
+                                                                Sách</a></button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
 

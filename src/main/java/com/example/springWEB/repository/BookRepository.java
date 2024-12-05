@@ -1,5 +1,7 @@
 package com.example.springWEB.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.springWEB.domain.Book;
@@ -7,4 +9,10 @@ import com.example.springWEB.domain.Book;
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
     public Book save(Book book);
+
+    public List<Book> findAll();
+
+    public Book findById(int id);
+
+    public void deleteById(int id);
 }
