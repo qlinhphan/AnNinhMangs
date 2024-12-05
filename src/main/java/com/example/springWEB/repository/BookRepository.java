@@ -8,8 +8,10 @@ import com.example.springWEB.domain.Book;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
+    @Override
     public Book save(Book book);
 
+    @Override
     public List<Book> findAll();
 
     public Book findById(int id);
