@@ -1,5 +1,6 @@
 package com.example.springWEB.domain;
 
+import com.example.springWEB.dto.request.UserDTO;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -70,4 +72,17 @@ public class User {
         this.book = book;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String DevToString() {
+        return "User{" + "id=" + id + ", fullName=" + fullName + ", address=" + address + ", born=" + born + ", role=" + role.getName() + '}';
+    }
+
+    
 }

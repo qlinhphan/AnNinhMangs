@@ -24,6 +24,19 @@
                     <!-- Custom styles for this template-->
                     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
+                    <style>
+                        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+                            font-size: 1rem;
+                            line-height: 2.15;
+                            padding-left: .75em;
+                            padding-right: .75em;
+                        }
+
+                        .card-registration .select-arrow {
+                            top: 13px;
+                        }
+                    </style>
+
                 </head>
 
                 <body id="page-top">
@@ -90,10 +103,9 @@
                                     <div class="bg-white py-2 collapse-inner rounded">
                                         <h6 class="collapse-header">Custom Utilities:</h6>
                                         <a class="collapse-item" href="utilities-color.html">Quản Lý Tác Giả</a>
-                                        <a class="collapse-item" href="/admin/book">Quản Lý Sách</a>
+                                        <a class="collapse-item" href="utilities-border.html">Quản Lý Sách</a>
+                                        <a class="collapse-item" href="utilities-animation.html">Danh Sách Bạn Đọc</a>
                                         <a class="collapse-item" href="utilities-animation.html">Danh Sách Người
-                                            Mượn</a>
-                                        <a class="collapse-item" href="/admin/user">Danh Sách Người
                                             Dùng</a>
                                     </div>
                                 </div>
@@ -221,188 +233,101 @@
                                 <div class="container-fluid">
 
                                     <!-- Page Heading -->
-                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                                    </div>
 
-                                    <!-- Content Row -->
-                                    <div class="row">
 
-                                        <!-- Earnings (Monthly) Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-primary shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div
-                                                                class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                                Earnings (Monthly)</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <form:form action="/admin/user/edit/ok" method="post" modelAttribute="currentUser">
 
-                                        <!-- Earnings (Monthly) Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-success shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div
-                                                                class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                                Earnings (Annual)</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Earnings (Monthly) Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-info shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div
-                                                                class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                                Tasks
-                                                            </div>
-                                                            <div class="row no-gutters align-items-center">
-                                                                <div class="col-auto">
-                                                                    <div
-                                                                        class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                                        50%</div>
+                                        <input type="hidden" name="userID" value="${user.id}">
+                                        
+                                        <section class="h-100 bg-dark">
+                                            <div class="container py-5 h-100">
+                                                <div class="row d-flex justify-content-center align-items-center h-100">
+                                                    <div class="col">
+                                                        <div class="card card-registration my-4">
+                                                            <div class="row g-0">
+                                                                <div class="col-xl-6 d-none d-xl-block">
+                                                                    <img src="/images/book/book.webp" alt="Sample photo"
+                                                                        class="img-fluid"
+                                                                        style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                                                                 </div>
-                                                                <div class="col">
-                                                                    <div class="progress progress-sm mr-2">
-                                                                        <div class="progress-bar bg-info"
-                                                                            role="progressbar" style="width: 50%"
-                                                                            aria-valuenow="50" aria-valuemin="0"
-                                                                            aria-valuemax="100"></div>
+                                                                <div class="col-xl-6">
+                                                                    <div class="card-body p-md-5 text-black">
+                                                                        <h3 class="mb-5 text-uppercase">Create A User
+                                                                        </h3>
+
+                                                                        <div class="row">
+                                                                            <!-- Full Name Field -->
+                                                                            <div class="col-md-6 mb-4">
+                                                                                <div data-mdb-input-init class="form-outline">
+                                                                                    <form:input type="text" id="fullName" class="form-control form-control-lg" value="${user.fullName}" path="fullName" />
+                                                                                    <label class="form-label" for="fullName">Full Name of User</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <!-- Address Field -->
+                                                                            <div class="col-md-6 mb-4">
+                                                                                <div data-mdb-input-init class="form-outline">
+                                                                                    <form:input type="text" id="address" class="form-control form-control-lg" value="${user.address}" path="address" />
+                                                                                    <label class="form-label" for="address">Address</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                            <div class="row">
+                                                                                <!-- Born Field -->
+                                                                                <div class="col-md-6 mb-4">
+                                                                                    <div data-mdb-input-init class="form-outline">
+                                                                                        <form:input type="number" id="born" class="form-control form-control-lg" value="${user.born}" path="born" />
+                                                                                        <label class="form-label" for="born">Year of Birth</label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!-- Role Field -->
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6 mb-4">
+                                                                                        <div data-mdb-input-init class="form-outline">
+                                                                                            <select id="role" class="form-control form-control-lg" name="roleId"
+                                                                                                    
+                                                                                                    
+                                                                                                    > 
+                                                                                                <option value="">Select Role</option>
+                                                                                                <c:forEach var="role" items="${roles}">
+                                                                                                    <option value="${role.id}"  
+                                                                                                            
+                                                                                                        <c:if test="${role.id == user.role.id}">selected</c:if>
+                                                                                                        
+                                                                                                        >${role.name}</option>
+                                                                                                </c:forEach>
+                                                                                            </select>
+                                                                                            <label class="form-label" for="role">Role</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+
+
+
+                                                                        <div class="d-flex justify-content-end pt-3">
+
+                                                                            <button type="submit" data-mdb-button-init
+                                                                                data-mdb-ripple-init
+                                                                                class="btn btn-warning btn-lg ms-2">Submit
+                                                                                form</button>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </section>
+                                    </form:form>
 
-                                        <!-- Pending Requests Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-warning shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div
-                                                                class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                                Pending Requests</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Content Row -->
-
-                                    <div class="row">
-
-                                        <!-- Area Chart -->
-                                        <div class="col-xl-8 col-lg-7">
-                                            <div class="card shadow mb-4">
-                                                <!-- Card Header - Dropdown -->
-                                                <!-- <div
-                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                                    <div class="dropdown no-arrow">
-                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                            id="dropdownMenuLink" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                            aria-labelledby="dropdownMenuLink">
-                                                            <div class="dropdown-header">Dropdown Header:</div>
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <!-- Card Body -->
-                                                <div class="card-body">
-                                                    <div class="chart-area">
-                                                        <canvas id="myAreaChart"></canvas>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Pie Chart -->
-                                        <div class="col-xl-4 col-lg-5">
-                                            <div class="card shadow mb-4">
-                                                <!-- Card Header - Dropdown -->
-                                                <div
-                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                                    <div class="dropdown no-arrow">
-                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                            id="dropdownMenuLink" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                            aria-labelledby="dropdownMenuLink">
-                                                            <div class="dropdown-header">Dropdown Header:</div>
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Card Body -->
-                                                <div class="card-body">
-                                                    <div class="chart-pie pt-4 pb-2">
-                                                        <canvas id="myPieChart"></canvas>
-                                                    </div>
-                                                    <div class="mt-4 text-center small">
-                                                        <span class="mr-2">
-                                                            <i class="fas fa-circle text-primary"></i> Direct
-                                                        </span>
-                                                        <span class="mr-2">
-                                                            <i class="fas fa-circle text-success"></i> Social
-                                                        </span>
-                                                        <span class="mr-2">
-                                                            <i class="fas fa-circle text-info"></i> Referral
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <!-- Content Row -->
                                     <div class="row">
