@@ -1,4 +1,4 @@
-package com.example.springWEB.controller.admin;
+package com.example.springWEB.controller.admin.manage;
 
 import java.util.List;
 
