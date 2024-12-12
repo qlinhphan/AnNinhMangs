@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-public class ConfigWebMvc implements WebMvcConfigurer {
+public class configWebMvc implements WebMvcConfigurer {
 
     // 2 cai nay dung de su dung file jsp
     @Bean
