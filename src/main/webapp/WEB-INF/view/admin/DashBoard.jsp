@@ -89,7 +89,7 @@
                                     data-parent="#accordionSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
                                         <h6 class="collapse-header">Custom Utilities:</h6>
-                                        <a class="collapse-item" href="utilities-color.html">Quản Lý Tác Giả</a>
+                                        <a class="collapse-item" href="/admin/author">Quản Lý Tác Giả</a>
                                         <a class="collapse-item" href="/admin/book">Quản Lý Sách</a>
                                         <a class="collapse-item" href="utilities-animation.html">Danh Sách Người
                                             Mượn</a>
