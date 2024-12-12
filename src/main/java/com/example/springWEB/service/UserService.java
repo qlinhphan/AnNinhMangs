@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.User;
+import com.example.springWEB.domain.dto.UserRegisterDTO;
 import com.example.springWEB.dto.request.UserDTO;
 import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.repository.UserRepository;
@@ -20,7 +21,7 @@ public class UserService {
     private RoleRepository roleRepository;
 
     public User saveUser(User user) {
-        
+
         return this.userRepository.save(user);
     }
 
@@ -45,5 +46,18 @@ public class UserService {
 
     public void deleteUserById(int id) {
         this.userRepository.deleteById(id);
+    }
+
+    public User findUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
+    public User convertToUser(UserRegisterDTO urd) {
+        User us = new User();
+        us.setFullName(urd.getName());
+        us.setEmail(urd.getEmail());
+        us.setPassword(urd.getPassword());
+        us = this.userRepository.save(us);
+        return us;
     }
 }

@@ -23,10 +23,15 @@
                 <body>
                     <div class="container">
                         <header>Signup</header>
-                        <form action="">
+                        <form:form action="/register" method="post" modelAttribute="newRegis">
+                            <!-- <div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </div> -->
                             <div class="field">
+
+
                                 <div class="input-field">
-                                    <input type="text" placeholder="Enter your Name" class="email" />
+                                    <form:input type="text" placeholder="Enter your Name" class="email" path="name" />
                                 </div>
                                 <span class="error email-error">
                                     <i class="bx bx-error-circle error-icon"></i>
@@ -35,7 +40,8 @@
                             </div>
                             <div class="field email-field">
                                 <div class="input-field">
-                                    <input type="email" placeholder="Enter your email" class="email" />
+                                    <form:input type="email" placeholder="Enter your email" class="email"
+                                        path="email" />
                                 </div>
                                 <span class="error email-error">
                                     <i class="bx bx-error-circle error-icon"></i>
@@ -44,7 +50,8 @@
                             </div>
                             <div class="field create-password">
                                 <div class="input-field">
-                                    <input type="password" placeholder="Create password" class="password" />
+                                    <form:input type="password" placeholder="Create password" class="password"
+                                        path="password" />
                                     <i class="bx bx-hide show-hide"></i>
                                 </div>
                                 <span class="error password-error">
@@ -57,7 +64,8 @@
                             </div>
                             <div class="field confirm-password">
                                 <div class="input-field">
-                                    <input type="password" placeholder="Confirm password" class="cPassword" />
+                                    <form:input type="password" placeholder="Confirm password" class="cPassword"
+                                        path="rePassword" />
                                     <i class="bx bx-hide show-hide"></i>
                                 </div>
                                 <span class="error cPassword-error">
@@ -66,12 +74,12 @@
                                 </span>
                             </div>
                             <div class="input-field button">
-                                <input type="submit" value="Submit Now" />
+                                <button type="submit">Submit</button>
                             </div>
                             <div>
-                                <p>Bạn đã có tài khoản? <a href="">Login now</a></p>
+                                <p>Bạn đã có tài khoản? <a href="/login">Login now</a></p>
                             </div>
-                        </form>
+                        </form:form>
                     </div>
 
                     <!-- JavaScript -->
