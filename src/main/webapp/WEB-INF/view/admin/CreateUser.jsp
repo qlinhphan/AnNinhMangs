@@ -256,47 +256,71 @@
                                                                         <div class="row">
                                                                             <!-- Full Name Field -->
                                                                             <div class="col-md-6 mb-4">
-                                                                                <div data-mdb-input-init class="form-outline">
-                                                                                    <form:input type="text" id="fullName" class="form-control form-control-lg" path="fullName" />
-                                                                                    <label class="form-label" for="fullName">Full Name of User</label>
+                                                                                <div data-mdb-input-init
+                                                                                    class="form-outline">
+                                                                                    <form:input type="text"
+                                                                                        id="fullName"
+                                                                                        class="form-control form-control-lg"
+                                                                                        path="fullName" />
+                                                                                    <label class="form-label"
+                                                                                        for="fullName">Full Name of
+                                                                                        User</label>
                                                                                 </div>
                                                                             </div>
 
                                                                             <!-- Address Field -->
                                                                             <div class="col-md-6 mb-4">
-                                                                                <div data-mdb-input-init class="form-outline">
-                                                                                    <form:input type="text" id="address" class="form-control form-control-lg" path="address" />
-                                                                                    <label class="form-label" for="address">Address</label>
+                                                                                <div data-mdb-input-init
+                                                                                    class="form-outline">
+                                                                                    <form:input type="text" id="address"
+                                                                                        class="form-control form-control-lg"
+                                                                                        path="address" />
+                                                                                    <label class="form-label"
+                                                                                        for="address">Address</label>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        
-                                                                        
-                                                                            <div class="row">
-                                                                                <!-- Born Field -->
-                                                                                <div class="col-md-6 mb-4">
-                                                                                    <div data-mdb-input-init class="form-outline">
-                                                                                        <form:input type="number" id="born" class="form-control form-control-lg" path="born" />
-                                                                                        <label class="form-label" for="born">Year of Birth</label>
-                                                                                    </div>
-                                                                                </div>
 
-                                                                                <!-- Role Field -->
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6 mb-4">
-                                                                                        <div class="form-outline">
-                                                                                            <select id="role" class="form-control form-control-lg" name="roleId"> 
-                                                                                                <option value="">Select Role</option>
-                                                                                                <c:forEach var="role" items="${roles}">
-                                                                                                    <option value="${role.id}">${role.name}</option>
-                                                                                                </c:forEach>
-                                                                                            </select>
-                                                                                            <label class="form-label" for="role">Role</label>
-                                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <!-- Born Field -->
+                                                                            <div class="col-md-6 mb-4">
+                                                                                <div data-mdb-input-init
+                                                                                    class="form-outline">
+                                                                                    <form:input type="number" id="born"
+                                                                                        class="form-control form-control-lg"
+                                                                                        path="born" />
+                                                                                    <label class="form-label"
+                                                                                        for="born">Year of Birth</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <!-- Role Field -->
+                                                                            <div class="row" style="width: 46%;">
+                                                                                <div class="col-md-6 mb-4">
+                                                                                    <div class="form-outline">
+                                                                                        <select id="role"
+                                                                                            class="form-control form-control-lg"
+                                                                                            name="roleId"
+                                                                                            style="width: 247%; margin-left: 14%;">
+                                                                                            <option value="">Select Role
+                                                                                            </option>
+                                                                                            <c:forEach var="role"
+                                                                                                items="${roles}">
+                                                                                                <option
+                                                                                                    value="${role.id}">
+                                                                                                    ${role.name}
+                                                                                                </option>
+                                                                                            </c:forEach>
+                                                                                        </select>
+                                                                                        <label class="form-label"
+                                                                                            for="role"
+                                                                                            style="margin-left: 17%;">Role</label>
                                                                                     </div>
                                                                                 </div>
-                                                                                
                                                                             </div>
+
+                                                                        </div>
 
 
 
