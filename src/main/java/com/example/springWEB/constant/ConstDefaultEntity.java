@@ -37,8 +37,8 @@ public class ConstDefaultEntity {
         ROLE_ID_USER = 1;
         ROLE_ID_ADMIN = 2;
 
-        System.out.println("id User : " + ROLE_ID_USER);
-        System.out.println("id admin : " + ROLE_ID_ADMIN);
+//        System.out.println("id User : " + ROLE_ID_USER);
+//        System.out.println("id admin : " + ROLE_ID_ADMIN);
 
         ROLE_TARGET_URL_WHEN_LOGIN_DONE = new HashMap<>() {
             {
