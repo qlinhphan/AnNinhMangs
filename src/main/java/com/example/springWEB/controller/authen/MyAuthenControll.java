@@ -9,6 +9,7 @@ import com.example.springWEB.domain.User;
 import com.example.springWEB.domain.dto.UserRegisterDTO;
 import com.example.springWEB.service.RoleService;
 import com.example.springWEB.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,13 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MyAuthenControll {
 
+    @Autowired
     private UserService userService;
-    private RoleService roleService;
-
-    public MyAuthenControll(UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
-    }
 
     @GetMapping("/register")
     public String regist(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
@@ -33,8 +29,6 @@ public class MyAuthenControll {
     public String registerok(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
         if (ur.getPassword().equals(ur.getRePassword())) {
             User us = this.userService.createUserFromDTO(ur);
-            us.setRole(this.roleService.findRoleByName("USER"));
-            this.userService.saveUser(us);
             return "ok";
         }
         model.addAttribute("message", "Passwords do not match!");

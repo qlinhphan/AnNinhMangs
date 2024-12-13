@@ -7,8 +7,10 @@ package com.example.springWEB.config;
 import com.example.springWEB.constant.ConstDefaultEntity;
 import com.example.springWEB.domain.Role;
 import com.example.springWEB.domain.User;
+import com.example.springWEB.dto.request.UserDTO;
 import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.repository.UserRepository;
+import com.example.springWEB.service.UserService;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,24 +26,28 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationInitConfig {
 
     @Bean
-    ApplicationRunner applicationRunner(RoleRepository roleRepository, UserRepository userRepository) {
+    ApplicationRunner applicationRunner(RoleRepository roleRepository, UserService userService) {
         return args -> {
 
             createRoleDefault(roleRepository);
-            createUserDefault(userRepository, roleRepository);
+            createUserDefault(userService);
         };
     }
 
-    private void createUserDefault(UserRepository userRepository, RoleRepository roleRepository) {
+    private void createUserDefault(UserService userService) {
         var email = "admin";
         var pass = "123123";
-        if (userRepository.findByEmail(email).orElse(null) == null) {
-            var user = new User();
-            user.setEmail(email);
-            user.setFullName("admin");
-            user.setPassword(pass);
-            user.setRole(roleRepository.findById(ConstDefaultEntity.ROLE_ID_ADMIN).orElseThrow());
-            userRepository.save(user);
+        if (userService.findUserByEmail(email) == null) {
+            userService.createUserFromDTO(new UserDTO() {
+                {
+                    {
+                        this.setEmail(email);
+                        this.setFullName("admin");
+                        this.setPassword(pass);
+                        this.setRoleId(ConstDefaultEntity.ROLE_ID_ADMIN);
+                    }
+                }
+            });
         }
     }
 

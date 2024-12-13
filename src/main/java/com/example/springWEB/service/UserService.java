@@ -54,6 +54,11 @@ public class UserService {
     }
 
     private User createUser(String name, String address, int born, String email, String password, int roleId) {
+
+        if (findUserByEmail(email) != null) {
+            throw new IllegalArgumentException("Email đã được sử dụng: " + email);
+        }
+
         var user = new User();
         user.setFullName(name);
         user.setAddress(address);
