@@ -11,15 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -30,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
-                passwordEncoder.encode(user.getPassword()),
+                user.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority(ConstDefaultEntity.PREFIX_ROLE + user.getRole().getName())));
     }
 }

@@ -41,6 +41,10 @@
                             <p>Not a member? <a href="#">Create Account</a>
                             <p>
                         </div>
+                            
+                        <c:if test="${param.error}">
+                           <p style="color:red;">Invalid username or password. Please try again.</p>
+                       </c:if>
                     </div>
 
 

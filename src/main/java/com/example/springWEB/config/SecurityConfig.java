@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
                 .loginPage("/login")
-                .failureUrl("/login?error")
+                .failureUrl("/login?error=true")
                 .successHandler(myAuthenticationSuccessHandlers()) // authorization
                 .permitAll())
                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny")); // page not

@@ -33,10 +33,12 @@ public class ConstDefaultEntity {
                 this.put(admin, "Quản trị viên");
             }
         };
-        List<String> roleKeys = new ArrayList<>(ROLE_DEFAULT.keySet());
 
-        ROLE_ID_USER = roleKeys.indexOf(user) + 1;
-        ROLE_ID_ADMIN = roleKeys.indexOf(admin) + 1;
+        ROLE_ID_USER = 1;
+        ROLE_ID_ADMIN = 2;
+
+        System.out.println("id User : " + ROLE_ID_USER);
+        System.out.println("id admin : " + ROLE_ID_ADMIN);
 
         ROLE_TARGET_URL_WHEN_LOGIN_DONE = new HashMap<>() {
             {
