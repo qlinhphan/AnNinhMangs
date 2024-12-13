@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.example.springWEB.domain.Role;
 import com.example.springWEB.domain.User;
 import com.example.springWEB.domain.dto.UserRegisterDTO;
 import com.example.springWEB.service.RoleService;
@@ -32,10 +31,14 @@ public class MyAuthenControll {
 
     @PostMapping("/register")
     public String registerok(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
-        User us = this.userService.convertToUser(ur);
-        us.setRole(this.roleService.findRoleByName("USER"));
-        this.userService.saveUser(us);
-        return "ok";
+        if (ur.getPassword().equals(ur.getRePassword())) {
+            User us = this.userService.createUserFromDTO(ur);
+            us.setRole(this.roleService.findRoleByName("USER"));
+            this.userService.saveUser(us);
+            return "ok";
+        }
+        model.addAttribute("message", "Passwords do not match!");
+        return "false";
     }
 
     @GetMapping("/login")
@@ -46,6 +49,20 @@ public class MyAuthenControll {
     @GetMapping("/access-deny")
     public String deny(Model model) {
         return "/client/deny";
+    }
+
+    @PostMapping("/login")
+    public void login(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            Model model) {
+
+        // Giả lập kiểm tra username và password (cần thay bằng logic thực tế với DB)
+        if ("admin".equals(username) && "123123".equals(password)) {
+            model.addAttribute("message", "Đăng nhập thành công!");
+        } else {
+            model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không chính xác!");
+        }
     }
 
 }

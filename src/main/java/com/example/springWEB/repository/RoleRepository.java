@@ -5,6 +5,7 @@
 package com.example.springWEB.repository;
 
 import com.example.springWEB.domain.Role;
+import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,5 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleRepository extends BaseRepository<Role, Integer> {
 
-    public Role findByName(String name);
+    public Optional<Role> findByName(String name);
 }
