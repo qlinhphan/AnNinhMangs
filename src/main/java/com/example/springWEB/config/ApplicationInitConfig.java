@@ -38,16 +38,12 @@ public class ApplicationInitConfig {
         var email = "admin";
         var pass = "123123";
         if (userService.findUserByEmail(email) == null) {
-            userService.createUserFromDTO(new UserDTO() {
-                {
-                    {
-                        this.setEmail(email);
-                        this.setFullName("admin");
-                        this.setPassword(pass);
-                        this.setRoleId(ConstDefaultEntity.ROLE_ID_ADMIN);
-                    }
-                }
-            });
+            var user = new UserDTO();
+            user.setEmail(email);
+            user.setFullName("admin");
+            user.setPassword(pass);
+            user.setRoleId(ConstDefaultEntity.ROLE_ID_ADMIN);
+            userService.saveUser(userService.createUserFromDTO(user));
         }
     }
 

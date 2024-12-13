@@ -29,6 +29,7 @@ public class MyAuthenControll {
     public String registerok(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
         if (ur.getPassword().equals(ur.getRePassword())) {
             User us = this.userService.createUserFromDTO(ur);
+            this.userService.saveUser(us);
             return "ok";
         }
         model.addAttribute("message", "Passwords do not match!");
@@ -43,20 +44,6 @@ public class MyAuthenControll {
     @GetMapping("/access-deny")
     public String deny(Model model) {
         return "/client/deny";
-    }
-
-    @PostMapping("/login")
-    public void login(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password,
-            Model model) {
-
-        // Giả lập kiểm tra username và password (cần thay bằng logic thực tế với DB)
-        if ("admin".equals(username) && "123123".equals(password)) {
-            model.addAttribute("message", "Đăng nhập thành công!");
-        } else {
-            model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không chính xác!");
-        }
     }
 
 }
