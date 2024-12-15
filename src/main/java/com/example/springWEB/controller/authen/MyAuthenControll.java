@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.springWEB.domain.User;
 import com.example.springWEB.domain.dto.UserRegisterDTO;
-import com.example.springWEB.service.RoleService;
 import com.example.springWEB.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyAuthenControll {

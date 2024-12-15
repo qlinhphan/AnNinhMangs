@@ -3,8 +3,6 @@ package com.example.springWEB.config;
 import com.example.springWEB.constant.ConstDefaultEntity;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -71,4 +69,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         handle(request, response, authentication);
         clearAuthenticationAttributes(request);
     }
+    
+    
+    
 }
