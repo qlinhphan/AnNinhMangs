@@ -11,17 +11,25 @@ import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.repository.UserRepository;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
+
     private RoleRepository roleRepository;
 
-    public User saveUser(User user) {
+    private PasswordEncoder passwordEncoder;
 
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public User saveUser(User user) {
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         return this.userRepository.save(user);
     }
 
@@ -56,7 +64,7 @@ public class UserService {
         User us = new User();
         us.setFullName(urd.getName());
         us.setEmail(urd.getEmail());
-        us.setPassword(urd.getPassword());
+        us.setPassword(this.passwordEncoder.encode(urd.getPassword()));
         us = this.userRepository.save(us);
         return us;
     }

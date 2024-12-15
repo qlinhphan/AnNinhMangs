@@ -10,6 +10,7 @@ import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,12 @@ public class UserControll {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
     private RoleRepository roleRepository;
+
+    public UserControll(UserService userService, RoleRepository roleRepository) {
+        this.userService = userService;
+        this.roleRepository = roleRepository;
+    }
 
     @GetMapping()
     public String book(Model model) {
@@ -65,7 +69,8 @@ public class UserControll {
     }
 
     @PostMapping("/edit/ok")
-    public String editOK(Model model, @RequestParam("userID") Integer userID, @ModelAttribute("currentUser") UserDTO userDTO) {
+    public String editOK(Model model, @RequestParam("userID") Integer userID,
+            @ModelAttribute("currentUser") UserDTO userDTO) {
         try {
             var newUser = userService.findUserById(userID);
             newUser.setFullName(userDTO.getFullName());

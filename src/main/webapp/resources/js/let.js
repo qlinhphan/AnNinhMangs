@@ -89,23 +89,23 @@ function checkEmail() {
 }
 
 // Password Validation
-function createPass() {
-    const passPattern =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+// function createPass() {
+//     const passPattern =
+//         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-    if (!passInput.value.match(passPattern)) {
-        return passField.classList.add("invalid");
-    }
-    passField.classList.remove("invalid");
-}
+//     if (!passInput.value.match(passPattern)) {
+//         return passField.classList.add("invalid");
+//     }
+//     passField.classList.remove("invalid");
+// }
 
-// Confirm Password Validation
-function confirmPass() {
-    if (passInput.value !== cPassInput.value || cPassInput.value === "") {
-        return cPassField.classList.add("invalid");
-    }
-    cPassField.classList.remove("invalid");
-}
+// // Confirm Password Validation
+// function confirmPass() {
+//     if (passInput.value !== cPassInput.value || cPassInput.value === "") {
+//         return cPassField.classList.add("invalid");
+//     }
+//     cPassField.classList.remove("invalid");
+// }
 
 // Add keyup events immediately
 emailInput.addEventListener("keyup", checkEmail);
@@ -113,17 +113,17 @@ passInput.addEventListener("keyup", createPass);
 cPassInput.addEventListener("keyup", confirmPass);
 
 // Handle form submit
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    checkEmail();
-    createPass();
-    confirmPass();
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     checkEmail();
+//     createPass();
+//     confirmPass();
 
-    if (
-        !emailField.classList.contains("invalid") &&
-        !passField.classList.contains("invalid") &&
-        !cPassField.classList.contains("invalid")
-    ) {
-        form.submit(); // Gửi form
-    }
-});
+//     if (
+//         !emailField.classList.contains("invalid") &&
+//         !passField.classList.contains("invalid") &&
+//         !cPassField.classList.contains("invalid")
+//     ) {
+//         form.submit(); // Gửi form
+//     }
+// });

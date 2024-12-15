@@ -38,6 +38,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
             String authorityName = grantedAuthority.getAuthority();
+            System.out.println(roleTargetUrlMap + "    " + authorityName);
             if (roleTargetUrlMap.containsKey(authorityName)) {
                 return roleTargetUrlMap.get(authorityName);
             }
