@@ -1,6 +1,7 @@
 package com.example.springWEB.repository;
 
 import com.example.springWEB.domain.User;
+import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends BaseRepository<User, Integer> {
-    public User findByEmail(String email);
+
+    public Optional<User> findByEmail(String email);
 }
