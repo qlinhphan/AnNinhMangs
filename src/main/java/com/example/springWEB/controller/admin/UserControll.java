@@ -10,6 +10,9 @@ import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +36,13 @@ public class UserControll {
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping()
-    public String book(Model model) {
-        List<User> listUser = this.userService.findAllUsers();
+    @GetMapping("")
+    public String book(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Pageable pagea = PageRequest.of(page - 1, 5);
+        Page<User> listPage = this.userService.findAllUsers(pagea);
+        List<User> listUser = listPage.getContent();
+        model.addAttribute("totalPage", listPage.getTotalPages());
+        model.addAttribute("currentPage", page);
         model.addAttribute("listUser", listUser);
         return "admin/TableUser";
     }

@@ -20,9 +20,9 @@ public class Author {
     private String address;
     private String status;
 
-    // author 1 -> n detail
+    // author 1 -> n book
     @OneToMany(mappedBy = "author")
-    private List<DetailBook> detailBook;
+    private List<Book> book;
 
     public int getId() {
         return id;
@@ -64,12 +64,12 @@ public class Author {
         this.status = status;
     }
 
-    public List<DetailBook> getDetailBook() {
-        return detailBook;
+    public List<Book> getBook() {
+        return book;
     }
 
-    public void setDetailBook(List<DetailBook> detailBook) {
-        this.detailBook = detailBook;
+    public void setBook(List<Book> book) {
+        this.book = book;
     }
 
 }

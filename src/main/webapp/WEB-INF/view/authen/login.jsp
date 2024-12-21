@@ -31,6 +31,10 @@
                                     style="width: 70%; margin-left: 15%;" required name="password" /><i
                                     class="validation"><span></span><span></span></i>
                             </p>
+                            <tr>
+                                <td>Remember Me:</td>
+                                <td><input type="checkbox" name="remember-me" /></td>
+                            </tr>
                             <p>
                                 <button type="submit">
                                     login

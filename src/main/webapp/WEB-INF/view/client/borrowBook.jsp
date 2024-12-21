@@ -79,18 +79,8 @@
 
                                     </div>
                                     <div class="d-flex m-3 me-0">
-                                        <!-- <button
-                                            class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-                                            data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                                                class="fas fa-search text-primary"></i></button>
-                                        <a href="#" class="position-relative me-4 my-auto">
-                                            <i class="fa fa-shopping-bag fa-2x"></i>
-                                            <span
-                                                class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
-                                        </a> -->
-                                        <a href="/" class="my-auto">
-                                            <!-- <i class="fas fa-user fa-2x"></i> -->
+
+                                        <a href="#" class="my-auto">
                                             <button type="button" class="btn btn-danger">Đăng xuất</button>
                                         </a>
                                     </div>
@@ -126,9 +116,29 @@
 
 
                     <!-- Single Page Header start -->
-                    <div class="container-fluid page-header py-5">
-                        <h1 class="text-center text-white display-6">Books</h1>
+                    <div class="container-fluid page-header py-5" style="background-color: white;">
+                        <h1 class="text-center text-white display-6">Thông báo!!</h1>
+                        <div class="alert alert-success"
+                            style="display: flex; justify-content: center; margin-top: 7%;">
+                            <strong> Bạn </strong> có muốn mượn quyển sách với tên <span style="color: red;">
+                                ${book.name} </span> của nhà
+                            xuất
+                            bản <span style="color: red;"> ${book.publisher} </span> này
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 34px">
+                            <form:form action="/finish/borr" method="post" modelAttribute="bookBorr">
+                                <div>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                </div>
+                                <div>
+                                    <form:input type="text" value="${book.id}" path="id" />
+                                </div>
 
+                                <button type="submit" class="btn btn-success" onclick="myAlert()">Có</button>
+                            </form:form>
+
+                            <button type="button" class="btn btn-danger">Trở lại</button>
+                        </div>
                     </div>
                     <!-- Single Page Header End -->
 
@@ -144,75 +154,12 @@
 
 
 
-                    <table class="table" style="margin-top: 5%;">
-
-                        <thead>
-                            <tr>
-                                <th scope="col" style="visibility: hidden;">Id</th>
-                                <th scope="col">Tên sách</th>
-                                <th scope="col">Năm xuất bản</th>
-                                <th scope="col">Nhà xuất bản</th>
-                                <th scope="col">Thao Tác</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <c:forEach var="book" items="${listBook}">
-                                <tr>
-
-                                    <th scope="id" style="visibility: hidden;">${book.id}</th>
-                                    <td>${book.name}</td>
-                                    <td>${book.year}</td>
-                                    <td>${book.publisher}</td>
-                                    <td><a href="/linkBook/FILE/${book.linkBook}">Link</a>
-                                        <button type="button" class="btn btn-primary"><a href="/borrowBook/${book.id}"
-                                                style="color: wheat">Mượn
-                                                sách</a></button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-
-
-
-
-
-                    <div class="col-12">
-                        <div class="pagination d-flex justify-content-center mt-5">
-
-
-
-                            <c:if test="${currentPage < 2}">
-                                <a href="#" class="rounded" style="display: none;">&laquo;</a>
-                            </c:if>
-                            <c:if test="${currentPage > 1}">
-                                <a href="/book?page=${currentPage-1}" class="rounded">&laquo;</a>
-                            </c:if>
-
-
-
-
-                            <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
-
-                                <a href="/book?page=${loop.index+1}" class="active rounded">${loop.index+1}</a>
-
-                            </c:forEach>
-
-
-
-
-
-                            <c:if test="${currentPage == totalPage }">
-                                <a href="#" class="rounded disabled" style="display: none;">&raquo;</a>
-                            </c:if>
-
-                            <c:if test="${currentPage < totalPage }">
-                                <a href="/book?page=${currentPage+1}" class="rounded">&raquo;</a>
-                            </c:if>
+                    <!-- <div class="container">
+                        <h2>Alerts</h2>
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> This alert box could indicate a successful or positive action.
                         </div>
-                    </div>
-
+                    </div> -->
 
 
 
@@ -330,6 +277,12 @@
 
 
                     <!-- JavaScript Libraries -->
+                    <script>
+                        function myAlert() {
+                            alert("Bạn đã mượn thành công cuốn sách này");
+                            window.location.href = '/book'
+                        }
+                    </script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
                     <script src="/js/easing.min.js"></script>

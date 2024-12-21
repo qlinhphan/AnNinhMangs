@@ -28,6 +28,7 @@ public class ConfigWebMvc implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.viewResolver(viewResolver());
+
     }
 
     // setup to use css
@@ -39,5 +40,8 @@ public class ConfigWebMvc implements WebMvcConfigurer {
                                                                                              // duong link images thi no
                                                                                              // se tu dong tim trong thu
                                                                                              // muc /resources/images/
+        registry.addResourceHandler("/linkBook/**") // URL pattern
+                .addResourceLocations("/resources/linkBook/"); // Đường dẫn thực
+
     }
 }

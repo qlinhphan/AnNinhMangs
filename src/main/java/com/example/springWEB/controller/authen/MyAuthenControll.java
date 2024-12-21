@@ -12,7 +12,6 @@ import com.example.springWEB.service.RoleService;
 import com.example.springWEB.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyAuthenControll {
@@ -32,9 +31,7 @@ public class MyAuthenControll {
 
     @PostMapping("/register")
     public String registerok(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
-        User us = this.userService.convertToUser(ur);
-        us.setRole(this.roleService.findRoleByName("USER"));
-        this.userService.saveUser(us);
+        this.userService.convertToUser(ur);
         return "ok";
     }
 

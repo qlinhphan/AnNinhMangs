@@ -1,6 +1,5 @@
 package com.example.springWEB.domain;
 
-import com.example.springWEB.dto.request.UserDTO;
 import java.util.List;
 
 import jakarta.persistence.Entity;

@@ -235,6 +235,7 @@
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Year</th>
                                                 <th scope="col">Publisher</th>
+                                                <th scope="col">Link of book</th>
                                                 <th scope="col">Handle</th>
                                             </tr>
                                         </thead>
@@ -246,6 +247,8 @@
                                                     <td>${book.name}</td>
                                                     <td>${book.year}</td>
                                                     <td>${book.publisher}</td>
+                                                    <td><a href="/linkBook/FILE/${book.linkBook}">Link
+                                                            Sách</a></td>
                                                     <td>
                                                         <button type="button" class="btn btn-success"><a
                                                                 href="/edit/${book.id}">Sửa T.T
@@ -258,6 +261,57 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+
+                                    <nav aria-label="...">
+                                        <ul class="pagination justify-content-center">
+
+                                            <c:if test="${currentPage > 1}">
+                                                <a href="/book?page=${currentPage-1}" class="rounded"
+                                                    data-page="${currentPage-1}">&laquo;</a>
+                                            </c:if>
+                                            <c:if test="${currentPage == 1}">
+                                                <a href="" class="rounded" style="display: none;">&laquo;</a>
+                                            </c:if>
+                                            <!-- name=${name} -->
+
+
+
+
+                                            <c:if test="${totalPage==0}">
+                                                <p>Không tìm thấy sản phẩm nào</p>
+                                            </c:if>
+
+                                            <c:if test="${totalPage>0}">
+                                                <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
+
+                                                    <a href="/book?page=${loop.index+1}"
+                                                        class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
+                                                        data-page="${loop.index+1}">${loop.index+1}</a>
+
+                                                </c:forEach>
+                                            </c:if>
+
+
+
+
+
+
+                                            <c:if test="${currentPage < totalPage}">
+
+                                                <a href="/book?page=${currentPage+1}" class="rounded"
+                                                    data-page="${currentPage+1}">&raquo;</a>
+
+                                            </c:if>
+                                            <c:if test="${currentPage == totalPage}">
+
+                                                <a href="" class="rounded" style="display: none;">&raquo;</a>
+                                            </c:if>
+
+
+
+
+                                        </ul>
+                                    </nav>
 
 
 

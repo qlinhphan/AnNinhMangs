@@ -251,23 +251,28 @@
                                                         <button type="button" class="btn btn-success"><a
                                                                 href="/admin/user/edit/${user.id}">Sửa T.T
                                                                 Người dùng</a></button>
-                                                         <!-- <button type="button" class="btn btn-danger"><a
+                                                        <!-- <button type="button" class="btn btn-danger"><a
                                                                 href="/admin/user/delete/${user.id}">Xóa
                                                                 Người dùng</a></button>  --/>
                                                         
                                                         
                                                         <!-- Nút Xóa -->
-                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-${user.id}">
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                            data-target="#deleteModal-${user.id}">
                                                             Xóa Người dùng
                                                         </button>
 
-                                                         <!-- Modal xác nhận xóa -->
-                                                        <div class="modal fade" id="deleteModal-${user.id}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                        <!-- Modal xác nhận xóa -->
+                                                        <div class="modal fade" id="deleteModal-${user.id}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="deleteModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="deleteModalLabel">Xóa Người dùng</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <h5 class="modal-title" id="deleteModalLabel">
+                                                                            Xóa Người dùng</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
@@ -275,18 +280,70 @@
                                                                         Bạn có chắc chắn muốn xóa người dùng này không?
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                                       <a href="${pageContext.request.contextPath}/admin/user/delete/${user.id}" class="btn btn-danger">Xóa</a>
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Hủy</button>
+                                                                        <a href="${pageContext.request.contextPath}/admin/user/delete/${user.id}"
+                                                                            class="btn btn-danger">Xóa</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>
+
+
+                                    <nav aria-label="...">
+                                        <ul class="pagination justify-content-center">
+
+                                            <c:if test="${currentPage < 2}">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="">Trước</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${currentPage > 1}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="/admin/user?page=${currentPage-1}">Trước</a>
+                                                </li>
+                                            </c:if>
+
+
+
+
+                                            <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
+
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="/admin/user?page=${loop.index+1}">${loop.index+1}
+                                                    </a>
+                                                </li>
+
+                                            </c:forEach>
+
+
+
+                                            <c:if test="${currentPage == totalPage }">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="/">Tiếp</a>
+                                                </li>
+                                            </c:if>
+
+                                            <c:if test="${currentPage < totalPage }">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="/admin/user?page=${currentPage+1}">Tiếp</a>
+                                                </li>
+                                            </c:if>
+
+
+
+
+                                        </ul>
+                                    </nav>
 
 
 

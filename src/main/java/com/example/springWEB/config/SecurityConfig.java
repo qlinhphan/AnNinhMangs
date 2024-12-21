@@ -1,9 +1,9 @@
 package com.example.springWEB.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,11 +13,14 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 
+import com.example.springWEB.service.CustomUserDetailsService;
+
 import jakarta.servlet.DispatcherType;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
         @Bean
         public HttpFirewall httpFirewall() {
                 StrictHttpFirewall firewall = new StrictHttpFirewall();
@@ -27,13 +30,13 @@ public class SecurityConfig {
         }
 
         @Bean
-        public PasswordEncoder passwordEncoder() {
-                return new BCryptPasswordEncoder();
+        public AuthenticationSuccessHandler myAuthenticationSuccessHandlers() {
+                return new MyAuthenticationSuccessHandler();
         }
 
         @Bean
-        public AuthenticationSuccessHandler myAuthenticationSuccessHandlers() {
-                return new MyAuthenticationSuccessHandler();
+        public PasswordEncoder encoder() {
+                return new BCryptPasswordEncoder();
         }
 
         @Bean
@@ -48,20 +51,22 @@ public class SecurityConfig {
                                                                 "/css/**", "/js/**", "/images/**", "/register")
                                                 .permitAll()
 
-                                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                                // .requestMatchers("/admin/**").hasRole("ADMIN")
 
                                                 .anyRequest().authenticated())
 
                                 .formLogin(formLogin -> formLogin
                                                 .loginPage("/login")
+                                                // .loginProcessingUrl("/login")
                                                 .failureUrl("/login?error")
                                                 .successHandler(myAuthenticationSuccessHandlers()) // authorization
                                                 .permitAll())
 
                                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny")) // page not
                                 // allowed
-                                // .rememberMe(reM -> reM.key("uniqueAndSecret").tokenValiditySeconds(86400))
+                                .rememberMe(reM -> reM.key("uniqueAndSecret").tokenValiditySeconds(86400))
                                 .logout(logout -> logout.deleteCookies("JSESSIONID"));
+
                 return http.build();
         }
 

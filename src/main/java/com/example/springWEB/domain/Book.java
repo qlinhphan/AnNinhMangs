@@ -22,15 +22,17 @@ public class Book {
     private String publisher;
     private String shortDes;
     private String detailDes;
+    private String linkBook;
 
     // book n -> 1 user
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    // book 1 -> n bookDetail
-    @OneToMany(mappedBy = "book")
-    private List<DetailBook> detailBook;
+    // book n -> 1 author
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     public int getYear() {
         return year;
@@ -88,12 +90,20 @@ public class Book {
         this.user = user;
     }
 
-    public List<DetailBook> getDetailBook() {
-        return detailBook;
+    public String getLinkBook() {
+        return linkBook;
     }
 
-    public void setDetailBook(List<DetailBook> detailBook) {
-        this.detailBook = detailBook;
+    public void setLinkBook(String linkBook) {
+        this.linkBook = linkBook;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
 }

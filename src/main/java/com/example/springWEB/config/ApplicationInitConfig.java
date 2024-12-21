@@ -56,7 +56,6 @@ public class ApplicationInitConfig {
                 adminRole.setDesctiption("Quản trị viên");
                 roleRepository.save(adminRole);
             }
-
         };
     }
 }

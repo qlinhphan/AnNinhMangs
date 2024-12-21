@@ -24,9 +24,9 @@
                     <div class="container">
                         <header>Signup</header>
                         <form:form action="/register" method="post" modelAttribute="newRegis">
-                            <!-- <div>
+                            <div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            </div> -->
+                            </div>
                             <div class="field">
 
 

@@ -2,12 +2,16 @@ package com.example.springWEB.controller.admin;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.springWEB.domain.Author;
@@ -24,8 +28,12 @@ public class AuthorController {
 
     // Hiển thị danh sách tác giả
     @GetMapping("/admin/author")
-    public String author(Model model) {
-        List<Author> listAuthor = this.authorService.findAllAuthors();
+    public String author(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Pageable pag = PageRequest.of(page - 1, 5);
+        Page<Author> pageAuthor = this.authorService.findAllAuthors(pag);
+        List<Author> listAuthor = pageAuthor.getContent();
+        model.addAttribute("totalPage", pageAuthor.getTotalPages());
+        model.addAttribute("currentPage", page);
         model.addAttribute("listAuthor", listAuthor);
         return "/admin/TableAuthor";
     }
@@ -87,4 +95,3 @@ public class AuthorController {
     }
 
 }
-

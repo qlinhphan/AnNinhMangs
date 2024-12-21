@@ -235,7 +235,8 @@
                                     <!-- Page Heading -->
 
 
-                                    <form:form action="/createBook/ok" method="post" modelAttribute="newBook">
+                                    <form:form action="/createBook/ok" method="post" modelAttribute="newBook"
+                                        enctype="multipart/form-data">
                                         <section class="h-100 bg-dark">
                                             <div class="container py-5 h-100">
                                                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -312,6 +313,33 @@
                                                                                 for="form3Example8">DetalDes</label>
                                                                         </div>
 
+                                                                        <div>
+                                                                            <input type="file" id="myFile" name="file">
+
+                                                                        </div>
+
+
+                                                                        <div>
+                                                                            <form:select class="form-select"
+                                                                                aria-label="Default select example"
+                                                                                style="margin-top: 2%;"
+                                                                                path="author.fullName">
+                                                                                <form:option value="Nguyen Van a">Nguyen
+                                                                                    Van a</form:option>
+                                                                                <form:option value="Nguyen Manh Hai">
+                                                                                    Nguyen Manh Hai</form:option>
+                                                                                <form:option value="Pham Quang Hung">
+                                                                                    Pham Quang Hung</form:option>
+                                                                                <form:option value="Nguyen Huu Hung">
+                                                                                    Nguyen Huu Hung</form:option>
+                                                                                <form:option value="Le Thi Soan">Le Thi
+                                                                                    Soan</form:option>
+                                                                                <form:option value="Truong Tan Sang">
+                                                                                    Truong Tan Sang</form:option>
+
+                                                                            </form:select>
+                                                                        </div>
+
 
 
                                                                         <div class="d-flex justify-content-end pt-3">
@@ -321,6 +349,7 @@
                                                                                 class="btn btn-warning btn-lg ms-2">Submit
                                                                                 form</button>
                                                                         </div>
+
 
                                                                     </div>
                                                                 </div>

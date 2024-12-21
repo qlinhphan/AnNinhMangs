@@ -14,7 +14,8 @@ public class DaoAuthen {
     private CustomUserDetailsService customUserDetailsService;
     private PasswordEncoder passwordEncoder;
 
-    public DaoAuthen(CustomUserDetailsService customUserDetailsService, PasswordEncoder passwordEncoder) {
+    public DaoAuthen(CustomUserDetailsService customUserDetailsService,
+            PasswordEncoder passwordEncoder) {
         this.customUserDetailsService = customUserDetailsService;
         this.passwordEncoder = passwordEncoder;
     }

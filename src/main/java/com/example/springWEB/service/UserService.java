@@ -10,7 +10,9 @@ import com.example.springWEB.dto.request.UserDTO;
 import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.repository.UserRepository;
 import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
@@ -29,7 +31,7 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return this.userRepository.save(user);
     }
 
@@ -43,8 +45,8 @@ public class UserService {
         return user;
     }
 
-    public List<User> findAllUsers() {
-        return this.userRepository.findAll();
+    public Page<User> findAllUsers(Pageable pageable) {
+        return this.userRepository.findAll(pageable);
     }
 
     public User findUserById(int id) {
@@ -65,7 +67,8 @@ public class UserService {
         us.setFullName(urd.getName());
         us.setEmail(urd.getEmail());
         us.setPassword(this.passwordEncoder.encode(urd.getPassword()));
-        us = this.userRepository.save(us);
+        us.setRole(this.roleRepository.findByName("USER"));
+        this.userRepository.save(us);
         return us;
     }
 }
