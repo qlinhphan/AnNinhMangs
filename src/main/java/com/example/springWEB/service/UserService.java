@@ -24,17 +24,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Service
 public class UserService {
 
+    @Autowired
     private UserRepository userRepository;
 
+    @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public User saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));

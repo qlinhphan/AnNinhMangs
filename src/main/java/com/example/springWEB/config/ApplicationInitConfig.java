@@ -28,44 +28,6 @@ public class ApplicationInitConfig {
     @Bean
     ApplicationRunner applicationRunner(RoleRepository roleRepository, UserService userService) {
         return args -> {
-
-            // Lấy tất cả các role từ cơ sở dữ liệu
-            var allRoles = roleRepository.findAll();
-
-            // Tạo 2 biến boolean để kiểm tra sự tồn tại của role USER và ADMIN
-            boolean hasUserRole = false;
-            boolean hasAdminRole = false;
-
-            // Duyệt danh sách role để kiểm tra
-            for (Role role : allRoles) {
-                if ("USER".equals(role.getName())) {
-                    hasUserRole = true;
-                }
-                if ("ADMIN".equals(role.getName())) {
-                    hasAdminRole = true;
-                }
-                // Nếu đã tìm thấy cả 2 role thì không cần duyệt tiếp
-                if (hasUserRole && hasAdminRole) {
-                    break;
-                }
-            }
-
-            // Nếu chưa có role USER, tạo mới và lưu vào cơ sở dữ liệu
-            if (!hasUserRole) {
-                Role userRole = new Role();
-                userRole.setName("USER");
-                userRole.setDesctiption("Người dùng");
-                roleRepository.save(userRole);
-            }
-
-            // Nếu chưa có role ADMIN, tạo mới và lưu vào cơ sở dữ liệu
-            if (!hasAdminRole) {
-                Role adminRole = new Role();
-                adminRole.setName("ADMIN");
-                adminRole.setDesctiption("Quản trị viên");
-                roleRepository.save(adminRole);
-            }
-
             createRoleDefault(roleRepository);
             createUserDefault(userService);
 

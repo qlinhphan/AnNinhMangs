@@ -8,9 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "role")
+@Data
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,28 +24,6 @@ public class Role {
     @OneToMany(mappedBy = "role")
     private List<User> user;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDesctiption() {
-        return desctiption;
-    }
-
-    public void setDesctiption(String desctiption) {
-        this.desctiption = desctiption;
-    }
+     
 
 }

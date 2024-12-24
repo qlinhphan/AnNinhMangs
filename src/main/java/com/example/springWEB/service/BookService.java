@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Book;
 import com.example.springWEB.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class BookService {
 
+    @Autowired
     private BookRepository bookRepository;
-
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     public Book saveBook(Book book) {
         return this.bookRepository.save(book);

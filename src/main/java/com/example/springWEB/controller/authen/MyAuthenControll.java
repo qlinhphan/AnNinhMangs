@@ -25,18 +25,13 @@ public class MyAuthenControll {
 
     @PostMapping("/register")
     public String registerok(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
-        // <<<<<<< HEAD
-        this.userService.convertToUser(ur);
-        return "ok";
-        // =======
-        // if (ur.getPassword().equals(ur.getRePassword())) {
-        // User us = this.userService.createUserFromDTO(ur);
-        // this.userService.saveUser(us);
-        // return "ok";
-        // }
-        // model.addAttribute("message", "Passwords do not match!");
-        // return "false";
-        // >>>>>>> 9692e9935f79bc1dc379be354920d060c610f085
+        if (ur.getPassword().equals(ur.getRePassword())) {
+            User us = this.userService.createUserFromDTO(ur);
+            this.userService.saveUser(us);
+            return "ok";
+        }
+        model.addAttribute("message", "Passwords do not match!");
+        return "false";
     }
 
     @GetMapping("/login")
