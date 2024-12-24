@@ -10,6 +10,7 @@ import com.example.springWEB.domain.User;
 import com.example.springWEB.dto.request.UserDTO;
 import com.example.springWEB.repository.RoleRepository;
 import com.example.springWEB.repository.UserRepository;
+import com.example.springWEB.service.AuthorService;
 import com.example.springWEB.service.UserService;
 import java.util.Map;
 import java.util.Set;
@@ -26,12 +27,44 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationInitConfig {
 
     @Bean
-    ApplicationRunner applicationRunner(RoleRepository roleRepository, UserService userService) {
+    ApplicationRunner applicationRunner(RoleRepository roleRepository, UserService userService, AuthorService authorService) {
         return args -> {
-            createRoleDefault(roleRepository);
-            createUserDefault(userService);
+            this.createRoleDefault(roleRepository);
+            this.createUserDefault(userService);
+            this.createAuthorDefault(authorService);
 
         };
+    }
+
+    private void createAuthorDefault(AuthorService authorService) {
+        if (authorService.toFindAllAthor().isEmpty() == false) {
+            return;
+        }
+
+        // Dữ liệu về các tác giả
+        String[][] authorsData = {
+            {"Thai Binh", "1999", "Nguyen Van a", "tac gia tre tuoi"},
+            {"Thanh Hoa", "1997", "Nguyen Manh Hai", "tac gia moi vao nghe"},
+            {"Hoa Binh", "2000", "Pham Quang Hung", "tac gia tre tuoi"},
+            {"Thai Binh", "1964", "Nguyen Huu Hung", "tac gia ky cuc"},
+            {"Thai Binh", "1999", "Le Thi Soan", "tac gia tot bung"},
+            {"Da Nang", "1992", "Truong Tan Sang", "tac gia tre tuoi"}
+        };
+
+        // Lặp qua dữ liệu và gọi phương thức createAndSaveAuthor
+        for (int i = 0; i < authorsData.length; i++) {
+            String fullName = authorsData[i][2]; // Tên tác giả
+            int birthYear = Integer.parseInt(authorsData[i][1]); // Năm sinh
+            String address = authorsData[i][0]; // Địa chỉ
+            String status = authorsData[i][3]; // Trạng thái
+
+            // Gọi phương thức createAndSaveAuthor
+            if (authorService.createAndSaveAuthor(fullName, birthYear, address, status) == false) {
+                System.err.println("[ERROR] - Khởi tạo dữ liệu author ????");
+                System.exit(0);
+            }
+        }
+
     }
 
     private void createUserDefault(UserService userService) {

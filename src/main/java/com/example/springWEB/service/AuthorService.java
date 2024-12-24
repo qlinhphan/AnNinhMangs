@@ -16,6 +16,23 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authRepo;
 
+    /**
+     *  Tạo mới và lưu author vào DB luôn
+     * @param fullName
+     * @param born
+     * @param address
+     * @param status
+     * @return - Tạo thành công: True, ngược lại: False
+     */
+    public boolean createAndSaveAuthor(String fullName, int born, String address, String status) {
+        Author newAuthor = new Author();
+        newAuthor.setFullName(fullName);
+        newAuthor.setBorn(born);
+        newAuthor.setAddress(address);
+        newAuthor.setStatus(status);
+        return this.saveAuthor(newAuthor) != null;
+    }
+
     public Author saveAuthor(Author auth) {
         return this.authRepo.save(auth);
     }
