@@ -30,10 +30,12 @@ public class UserControll {
     @Autowired
     private UserService userService;
     private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public UserControll(UserService userService, RoleRepository roleRepository) {
+    public UserControll(UserService userService, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("")
@@ -84,6 +86,7 @@ public class UserControll {
             newUser.setAddress(userDTO.getAddress());
             newUser.setBorn(userDTO.getBorn());
             newUser.setRole(roleRepository.findById(userDTO.getRoleId()).orElseThrow());
+
             System.out.println(newUser.DevToString());
             userService.saveUser(newUser);
         } catch (Exception e) {

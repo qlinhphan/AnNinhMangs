@@ -35,7 +35,7 @@
                         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                             <!-- Sidebar - Brand -->
-                            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                                 <div class="sidebar-brand-icon rotate-n-15">
                                     <i class="fas fa-laugh-wink"></i>
                                 </div>
@@ -47,7 +47,7 @@
 
                             <!-- Nav Item - Dashboard -->
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">
+                                <a class="nav-link" href="/admin">
                                     <i class="fas fa-fw fa-tachometer-alt"></i>
                                     <span>Dashboard</span></a>
                             </li>
@@ -221,94 +221,37 @@
 
                                     <!-- Page Heading -->
                                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                        <h1 class="h3 mb-0 text-gray-800">Table Book</h1>
-                                        <a href="/admin/book/create"
-                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                                class="fas fa-download fa-sm text-white-50"></i>Create A Book</a>
+                                        <h1 class="h3 mb-0 text-gray-800">Table Borrower</h1>
+
                                     </div>
 
 
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Year</th>
-                                                <th scope="col">Publisher</th>
-                                                <th scope="col">Link of book</th>
-                                                <th scope="col">Handle</th>
+                                                <th scope="col">Id người mượn</th>
+                                                <th scope="col">Tên người mượn</th>
+                                                <th scope="col">Id sách</th>
+                                                <th scope="col">Tên sách</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            <c:forEach var="book" items="${listBook}">
+                                            <c:forEach var="book" items="${dataBooks}">
                                                 <tr>
-                                                    <th scope="row">${book.id}</th>
+                                                    <th scope="row">${book.user.id}</th>
+                                                    <td>${book.user.fullName}</td>
+                                                    <td>${book.id}</td>
                                                     <td>${book.name}</td>
-                                                    <td>${book.year}</td>
-                                                    <td>${book.publisher}</td>
-                                                    <td><a href="/linkBook/FILE/${book.linkBook}">Link
-                                                            Sách</a></td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-success"><a
-                                                                href="/edit/${book.id}">Sửa T.T
-                                                                Sách</a></button>
-                                                        <button type="button" class="btn btn-danger"><a
-                                                                href="/delBook/${book.id}">Xóa
-                                                                Sách</a></button>
-                                                    </td>
                                                 </tr>
                                             </c:forEach>
+
+
                                         </tbody>
                                     </table>
 
 
 
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-
-
-                                            <c:if test="${currentPage < 2}">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="">Trước</a>
-                                                </li>
-                                            </c:if>
-                                            <c:if test="${currentPage > 1}">
-                                                <li class="page-item">
-                                                    <a class="page-link"
-                                                        href="/admin/book?page=${currentPage-1}">Trước</a>
-                                                </li>
-                                            </c:if>
-
-
-
-
-                                            <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
-
-                                                <li class="page-item">
-                                                    <a class="page-link"
-                                                        href="/admin/book?page=${loop.index+1}">${loop.index+1}</a>
-                                                </li>
-
-                                            </c:forEach>
-
-
-
-
-                                            <c:if test="${currentPage == totalPage }">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="/">Tiếp</a>
-                                                </li>
-                                            </c:if>
-
-                                            <c:if test="${currentPage < totalPage }">
-                                                <li class="page-item">
-                                                    <a class="page-link"
-                                                        href="/admin/book?page=${currentPage+1}">Tiếp</a>
-                                                </li>
-                                            </c:if>
-                                        </ul>
-                                    </nav>
 
 
 
