@@ -284,6 +284,30 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                                    
+                                                                                    
+                                                                        <div class="row">
+                                                                            <!-- Email Field -->
+                                                                            <div class="col-md-6 mb-4">
+                                                                                <div data-mdb-input-init class="form-outline">
+                                                                                    <form:input type="text"
+                                                                                                id="email"
+                                                                                                class="form-control form-control-lg"
+                                                                                                path="email" />
+                                                                                    <label class="form-label" for="password">Email</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Password Field -->
+                                                                            <div class="col-md-6 mb-4">
+                                                                                <div data-mdb-input-init class="form-outline">
+                                                                                    <form:input type="password"
+                                                                                                id="password"
+                                                                                                class="form-control form-control-lg"
+                                                                                                path="password" />
+                                                                                    <label class="form-label" for="password">Password</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
 
 
