@@ -1,9 +1,8 @@
 package com.example.springWEB.config;
 
+import com.example.springWEB.constant.ConstDefaultEntity;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,16 +25,15 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 
     protected String determineTargetUrl(final Authentication authentication) {
 
-        Map<String, String> roleTargetUrlMap = new HashMap<>();
-        roleTargetUrlMap.put("ROLE_USER", "/book");
-        roleTargetUrlMap.put("ROLE_ADMIN", "/admin");
-
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
             String authorityName = grantedAuthority.getAuthority();
-            if (roleTargetUrlMap.containsKey(authorityName)) {
-                return roleTargetUrlMap.get(authorityName);
+
+            if (ConstDefaultEntity.ROLE_TARGET_URL_WHEN_LOGIN_DONE.containsKey(authorityName)) {
+                return ConstDefaultEntity.ROLE_TARGET_URL_WHEN_LOGIN_DONE.get(authorityName);
             }
+            System.err.println("Unknown authority: " + authorityName);
+
         }
 
         throw new IllegalStateException();
@@ -71,4 +69,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         handle(request, response, authentication);
         clearAuthenticationAttributes(request);
     }
+    
+    
+    
 }

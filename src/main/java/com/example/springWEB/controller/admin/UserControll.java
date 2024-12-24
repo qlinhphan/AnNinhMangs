@@ -60,7 +60,7 @@ public class UserControll {
     public String createOk(Model model, @ModelAttribute("newUser") UserDTO userDTO) {
         try {
             var newUser = userService.createUserFromDTO(userDTO);
-            System.out.println(newUser.DevToString());
+            // System.out.println(newUser.DevToString());
             userService.saveUser(newUser);
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,7 +87,6 @@ public class UserControll {
             newUser.setBorn(userDTO.getBorn());
             newUser.setRole(roleRepository.findById(userDTO.getRoleId()).orElseThrow());
 
-            System.out.println(newUser.DevToString());
             userService.saveUser(newUser);
         } catch (Exception e) {
             e.printStackTrace();
