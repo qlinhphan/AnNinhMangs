@@ -32,7 +32,7 @@ public class AuthorController {
         Pageable pag = PageRequest.of(page - 1, 5);
         Page<Author> pageAuthor = this.authorService.findAllAuthors(pag);
         List<Author> listAuthor = pageAuthor.getContent();
-        model.addAttribute("totalPage", pageAuthor.getTotalPages());
+        model.addAttribute("totalPage", Math.max(pageAuthor.getTotalPages(), 1));
         model.addAttribute("currentPage", page);
         model.addAttribute("listAuthor", listAuthor);
         return "/admin/TableAuthor";

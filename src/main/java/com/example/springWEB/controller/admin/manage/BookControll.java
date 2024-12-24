@@ -44,7 +44,7 @@ public class BookControll {
         Pageable pag = PageRequest.of(page - 1, 5);
         Page<Book> listBookPage = this.bookService.findAllBookss(pag);
         List<Book> listBook = listBookPage.getContent();
-        model.addAttribute("totalPage", listBookPage.getTotalPages());
+        model.addAttribute("totalPage", Math.max(listBookPage.getTotalPages(), 1));
         model.addAttribute("currentPage", page);
         model.addAttribute("listBook", listBook);
         return "/admin/TableBook";
