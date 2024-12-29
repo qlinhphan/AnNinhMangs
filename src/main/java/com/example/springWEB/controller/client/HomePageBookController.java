@@ -41,7 +41,7 @@ public class HomePageBookController {
         Page<Book> listPage = this.bookService.findAllBookss(pag);
         List<Book> listBook = listPage.getContent();
         model.addAttribute("listBook", listBook);
-        model.addAttribute("totalPage", listPage.getTotalPages());
+        model.addAttribute("totalPage", Math.max(listPage.getTotalPages(), 1));
         model.addAttribute("currentPage", page);
         session.setAttribute("name", us.getFullName());
         return "/client/PageOrderBook";

@@ -34,9 +34,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return this.userRepository.save(user);
-
     }
 
     public User createUserFromDTO(UserDTO userDTO) {

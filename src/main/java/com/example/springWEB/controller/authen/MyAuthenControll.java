@@ -21,7 +21,7 @@ public class MyAuthenControll {
     @GetMapping("/register")
     public String regist(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
         return "/authen/register";
-    }
+    }  //duoc roi
 
     @PostMapping("/register")
     public String registerok(Model model, @ModelAttribute("newRegis") UserRegisterDTO ur) {
